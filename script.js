@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseImg = new Image();
     baseImg.crossOrigin = "anonymous";
     // Swap out this placeholder URL with an iconic Ansem banner or Bull silhouette asset
-    baseImg.src = 'https://placehold.co/600x600/0b0b0f/00ffa3?text=THE+BLACK+BULL';
+    baseImg.src = 'HMacMQCXcAAg5Aa.jpg';
 
     baseImg.onload = () => {
         renderMeme();
