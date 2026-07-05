@@ -17,35 +17,43 @@
         </header>
 
         <section class="workspace">
-            <!-- Canvas Preview Window -->
-            <div class="canvas-wrapper">
-                <canvas id="memeCanvas" width="600" height="600"></canvas>
+    <div class="main-stage">
+        <!-- Canvas Preview Window -->
+        <div class="canvas-wrapper">
+            <canvas id="memeCanvas" width="600" height="600"></canvas>
+        </div>
+
+        <!-- Inputs right underneath the Canvas -->
+        <div class="form-row">
+            <div class="input-group">
+                <label for="memeText">Meme Caption</label>
+                <input type="text" id="memeText" value="CONVICTION IS RISING" placeholder="CONVICTION IS RISING" autocomplete="off">
             </div>
 
-            <!-- Interactive Control Panel -->
-            <div class="control-panel">
-                <div class="input-group">
-                    <label for="memeText">Meme Caption</label>
-                    <input type="text" id="memeText" placeholder="e.g., CONVICTION IS RISING" autocomplete="off">
-                </div>
-
-                <div class="input-group">
-                    <label for="userWallet">Solana Wallet Address</label>
-                    <input type="text" id="userWallet" placeholder="Enter your SOL address for the drop" autocomplete="off">
-                </div>
-
-                <div class="button-stack">
-                    <button id="btnPreview" class="btn btn-secondary">Update Preview</button>
-                    <button id="btnShare" class="btn btn-primary">
-                        <span>Share on X & Submit</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    </button>
-                </div>
+            <div class="input-group">
+                <label for="userWallet">Submit Wallet for Airdrop Validation</label>
+                <input type="text" id="userWallet" placeholder="SOLANA WALLET..." autocomplete="off">
             </div>
-        </section>
-    </main>
+        </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+        <button id="btnShare" class="btn btn-primary">
+            UPDATE PREVIEW & GENERATE SHAREABLE LINK
+        </button>
+    </div>
 
+    <!-- Live Feedback Sidebar on the Right -->
+    <aside class="feedback-sidebar">
+        <h3>Live feedback</h3>
+        <p class="sidebar-sub">Generated caption...</p>
+        <div class="preview-thumbs">
+            <div class="thumb-card active">
+                <img src="1001732203.jpg" alt="Template">
+                <span>BULLISH</span>
+            </div>
+            <div class="thumb-card">
+                <img src="1001732203.jpg" alt="Template">
+                <span>BULLISH</span>
+            </div>
+        </div>
+    </aside>
+</section>
