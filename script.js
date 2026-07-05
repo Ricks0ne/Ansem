@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
                           `Tracking validation parameters via @BullpenFi indices.\n` +
                           `Wallet: ${walletAddress}\n\n` +
                           `cc: @blknoiz06 🐂 \n` +
-                          `Forge your own media here: [YOUR_DEPLOYED_URL]`;
+                          `Forge your own media here: https://ansemmemefactory.vercel.app/`;
 
         const targetIntentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
         window.open(targetIntentUrl, '_blank');
