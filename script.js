@@ -6,73 +6,80 @@ document.addEventListener('DOMContentLoaded', () => {
     const userWalletInput = document.getElementById('userWallet');
     const btnShare = document.getElementById('btnShare');
 
-    // Load template background asset verbatim
+    // Create an elegant hidden download link element
+    const downloadLink = document.createElement('a');
+
     const baseImg = new Image();
     baseImg.crossOrigin = "anonymous";
     baseImg.src = '1001732203.jpg';
 
     baseImg.onload = () => {
+        // Match canvas internal resolution to the real picture for crisp downloads
+        canvas.width = baseImg.naturalWidth || 600;
+        canvas.height = baseImg.naturalHeight || 600;
         renderMeme();
     };
 
     function renderMeme() {
-        // Clear canvas context
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Render base graphic layer
         ctx.drawImage(baseImg, 0, 0, canvas.width, canvas.height);
         
-        // Gather state configuration
         const textValue = memeTextInput.value.trim() || "CONVICTION IS RISING";
         
-        // Configure classic web3 meme typography layout
-        ctx.fillStyle = '#ffffff'; // White interior text fill matching mockup screenshot
-        ctx.font = '900 40px sans-serif';
+        // Dynamically scale font size based on canvas width for efficiency
+        const fontSize = Math.floor(canvas.width * 0.065); 
+        ctx.fillStyle = '#ffffff'; 
+        ctx.font = `900 ${fontSize}px sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
         
-        // Structural outline neon shadow styling matching mockup green glow
         ctx.strokeStyle = '#00ffa3';
-        ctx.lineWidth = 6;
+        ctx.lineWidth = Math.floor(fontSize * 0.15);
         ctx.lineJoin = 'round';
         
-        const paddingTop = 40;
+        // Top placement optimization
+        const paddingTop = canvas.height * 0.08;
         const xPosition = canvas.width / 2;
         const yPosition = paddingTop;
 
-        // Draw structural outline stroke text layer
         ctx.strokeText(textValue.toUpperCase(), xPosition, yPosition);
-        // Draw fill text layer
         ctx.fillText(textValue.toUpperCase(), xPosition, yPosition);
     }
 
-    function executeXShare() {
-        // Run an instant render check on click to handle latest inputs
-        renderMeme();
-
+    function processAndDownload() {
         const walletAddress = userWalletInput.value.trim();
         const customCaption = memeTextInput.value.trim() || "Building tools for the herd.";
 
         if (!walletAddress) {
-            alert("⚠️ Please insert your Solana wallet address first to be included in the distribution validation loop.");
+            alert("⚠️ Please drop your Solana wallet address first to lock in your submission point parameters.");
             return;
         }
 
-        // Auto-constructed payload matching the dynamic multi-layered scoring meta
-        const tweetText = `⚡ Just minted custom alpha inside the $ANSEM Meme Factory!\n\n` +
+        // 1. Force a clean final render
+        renderMeme();
+
+        // 2. Efficiently trigger a direct native download of the literal image file
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+        downloadLink.download = `ansem-bull-meme.jpg`;
+        downloadLink.href = dataUrl;
+        downloadLink.click();
+
+        // 3. Open X Intent pre-formatted so they can instantly attach their downloaded image
+        const tweetText = `⚡ Just forged raw alpha inside the $ANSEM Meme Factory!\n\n` +
                           `"${customCaption}"\n\n` +
-                          `Tracking validation parameters via @BullpenFi indices.\n` +
+                          `Tracking verification parameters via @BullpenFi indices.\n` +
                           `Wallet: ${walletAddress}\n\n` +
-                          `cc: @blknoiz06 🐂 \n` +
-                          `Forge your own media here: https://ansemmemefactory.vercel.app/`;
+                          `cc: @blknoiz06 🐂\n` +
+                          `Create your image asset here: https://ansemmemefactory.vercel.app/`;
 
         const targetIntentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
-        window.open(targetIntentUrl, '_blank');
+        
+        // Give the download a split second to initiate before opening the tab
+        setTimeout(() => {
+            window.open(targetIntentUrl, '_blank');
+        }, 300);
     }
 
-    // Dynamic UI Listeners (Safely unbound from old elements)
-    btnShare.addEventListener('click', executeXShare);
-    
-    // Rerender dynamically as the user types to update real-time preview canvas
+    btnShare.addEventListener('click', processAndDownload);
     memeTextInput.addEventListener('input', renderMeme);
 });
