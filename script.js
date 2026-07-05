@@ -4,14 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const memeTextInput = document.getElementById('memeText');
     const userWalletInput = document.getElementById('userWallet');
-    const btnPreview = document.getElementById('btnPreview');
     const btnShare = document.getElementById('btnShare');
 
-    // Load template background asset
+    // Load template background asset verbatim
     const baseImg = new Image();
     baseImg.crossOrigin = "anonymous";
-    // Swap out this placeholder URL with an iconic Ansem banner or Bull silhouette asset
-    baseImg.src = 'HMacMQCXcAAg5Aa.jpg';
+    baseImg.src = '1001732203.jpg';
 
     baseImg.onload = () => {
         renderMeme();
@@ -28,19 +26,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const textValue = memeTextInput.value.trim() || "CONVICTION IS RISING";
         
         // Configure classic web3 meme typography layout
-        ctx.fillStyle = '#00ffa3'; 
-        ctx.font = '900 42px sans-serif';
+        ctx.fillStyle = '#ffffff'; // White interior text fill matching mockup screenshot
+        ctx.font = '900 40px sans-serif';
         ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
+        ctx.textBaseline = 'top';
         
-        // Structural outline shadow styling for clarity over images
-        ctx.strokeStyle = '#000000';
-        ctx.lineWidth = 8;
+        // Structural outline neon shadow styling matching mockup green glow
+        ctx.strokeStyle = '#00ffa3';
+        ctx.lineWidth = 6;
         ctx.lineJoin = 'round';
         
-        const paddingBottom = 60;
+        const paddingTop = 40;
         const xPosition = canvas.width / 2;
-        const yPosition = canvas.height - paddingBottom;
+        const yPosition = paddingTop;
 
         // Draw structural outline stroke text layer
         ctx.strokeText(textValue.toUpperCase(), xPosition, yPosition);
@@ -49,6 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function executeXShare() {
+        // Run an instant render check on click to handle latest inputs
+        renderMeme();
+
         const walletAddress = userWalletInput.value.trim();
         const customCaption = memeTextInput.value.trim() || "Building tools for the herd.";
 
@@ -69,11 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open(targetIntentUrl, '_blank');
     }
 
-    // Dynamic UI Listeners
-    btnPreview.addEventListener('click', renderMeme);
+    // Dynamic UI Listeners (Safely unbound from old elements)
     btnShare.addEventListener('click', executeXShare);
     
-    // Rerender on typing for dynamic input responsiveness
+    // Rerender dynamically as the user types to update real-time preview canvas
     memeTextInput.addEventListener('input', renderMeme);
 });
-
