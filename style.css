@@ -91,6 +91,17 @@ header {
     padding-left: 20px;
 }
 
+.feedback-sidebar h3 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.sidebar-sub {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+}
+
 .preview-thumbs {
     display: flex;
     flex-direction: column;
@@ -107,6 +118,105 @@ header {
 }
 
 .thumb-card img {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.thumb-card span {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--neon-green);
+    margin-top: 6px;
+}
+
+.thumb-card.active {
+    border-color: var(--neon-green);
+}
+
+/* Canvas Display styling */
+.canvas-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    aspect-ratio: 1 / 1;
+}
+
+#memeCanvas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Form Controls */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+.input-group input {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    padding: 16px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--neon-green);
+    box-shadow: 0 0 10px rgba(0, 255, 163, 0.2);
+}
+
+.btn {
+    width: 100%;
+    padding: 18px;
+    font-size: 1rem;
+    font-weight: 900;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-primary {
+    background: var(--neon-green);
+    color: #000;
+    box-shadow: 0 4px 20px rgba(0, 255, 163, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 255, 163, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .workspace {
+        grid-template-columns: 1fr;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
     width: 100%;
     border-radius: 6px;
 }
