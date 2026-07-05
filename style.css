@@ -72,15 +72,49 @@ header {
 /* Main Workspace Split Layout */
 .workspace {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    background: var(--panel-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 24px;
-    padding: 30px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    grid-template-columns: 3fr 1fr; /* Gives the canvas area more breathing room */
+    gap: 24px;
+    background: #14141c;
+    border-radius: 12px;
+    padding: 24px;
 }
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.feedback-sidebar {
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    padding-left: 20px;
+}
+
+.preview-thumbs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.thumb-card {
+    background: #0c0c10;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+}
+
+.thumb-card img {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.thumb-card.active {
+    border-color: var(--neon-green);
+}
+
 
 /* Canvas Display styling */
 .canvas-wrapper {
